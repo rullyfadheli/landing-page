@@ -6,12 +6,12 @@ const Packages = () => {
   const packages = [
     {
       name: "Basic",
-      price: "Mulai dari Rp 3.000.000",
+      price: "Mulai dari Rp 1.000.000",
       description:
         "Solusi ideal untuk bisnis yang baru memulai kehadiran online",
       features: [
         "Desain responsif modern",
-        "Hingga 5 halaman",
+        // "Hingga 5 halaman",
         "SEO dasar",
         "Form kontak",
         "Integrasi Google Maps",
@@ -22,11 +22,11 @@ const Packages = () => {
     },
     {
       name: "Business",
-      price: "Mulai dari Rp 7.000.000",
+      price: "Mulai dari Rp 5.000.000",
       description: "Paket lengkap untuk bisnis yang ingin tumbuh lebih cepat",
       features: [
         "Semua fitur Basic",
-        "Hingga 15 halaman",
+        "Hingga 8 halaman",
         "SEO advanced",
         "Blog/News system",
         "Integrasi WhatsApp Business",
