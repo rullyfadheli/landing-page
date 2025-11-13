@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Civika Digital",
   description: "Teknologi dari warga, untuk warga",
+  icons: {
+    icon: "favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -24,9 +27,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/icon/icon.png" type="image/png" sizes="62x62" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased border-border`}
       >
