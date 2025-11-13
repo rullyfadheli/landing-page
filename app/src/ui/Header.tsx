@@ -93,18 +93,27 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  className="text-sm header font-medium text-foreground transition-colors py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
+          <div className="md:hidden bg-white/60 h-screen w-screen">
+            <div className="md:hidden top-0 p-4 border-t border-border rounded-r-md h-screen bg-accent absolute left-0 animate-fade-in">
+              <Image
+                src={"/logo-final.png"}
+                alt="Civika Digital Technology"
+                className="h-20 w-auto bg-transparent"
+                width={90}
+                height={90}
+              />
+              <div className="flex flex-col gap-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => scrollToSection(e, link.href)}
+                    className="text-sm header font-medium text-foreground transition-colors py-2"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         )}
