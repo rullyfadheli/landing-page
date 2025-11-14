@@ -14,14 +14,48 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the data to a backend
-    toast.success(
-      "Pesan Anda telah terkirim! Kami akan menghubungi Anda segera."
-    );
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(true);
+
+    const { name, email, subject, message } = formData;
+
+    try {
+      console.log("Sending form data:", { name, email, subject, message });
+
+      const response = await fetch("/api/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      console.log("Response status:", response.status);
+
+      // Cek apakah response OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data.success);
+
+      if (data.success) {
+        toast.success(
+          "Pesan Anda telah terkirim! Kami akan menghubungi Anda segera."
+        );
+        // Reset form setelah berhasil
+        // setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toast.error(data.message || "Pesan Anda gagal terkirim!");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleWhatsApp = () => {
@@ -44,7 +78,12 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="animate-fade-in-up">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              onSubmit={(e) => {
+                handleSubmit(e);
+              }}
+              className="space-y-6"
+            >
               <div>
                 <Input
                   placeholder="Nama Lengkap"
@@ -53,6 +92,7 @@ const Contact = () => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -64,6 +104,7 @@ const Contact = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -74,6 +115,7 @@ const Contact = () => {
                     setFormData({ ...formData, subject: e.target.value })
                   }
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -85,10 +127,16 @@ const Contact = () => {
                   }
                   rows={6}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
-              <Button type="submit" className="w-full" size="lg">
-                Kirim Pesan
+              <Button
+                type="submit"
+                className="w-full"
+                // size="lg"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Mengirim..." : "Kirim Pesan"}
               </Button>
             </form>
           </div>
