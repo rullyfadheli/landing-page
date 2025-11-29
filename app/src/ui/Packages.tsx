@@ -6,7 +6,8 @@ const Packages = () => {
   const packages = [
     {
       name: "Basic",
-      price: "Mulai dari Rp 1.000.000",
+      price: "1.000.000",
+      promo: "700.000",
       description:
         "Solusi ideal untuk bisnis yang baru memulai kehadiran online",
       features: [
@@ -22,7 +23,7 @@ const Packages = () => {
     },
     {
       name: "Business",
-      price: "Mulai dari Rp 5.000.000",
+      price: "5.000.000",
       description: "Paket lengkap untuk bisnis yang ingin tumbuh lebih cepat",
       features: [
         "Semua fitur Basic",
@@ -38,7 +39,6 @@ const Packages = () => {
     },
     {
       name: "E-commerce",
-      price: "Hubungi Kami",
       description: "Solusi komprehensif untuk toko online Anda",
       features: [
         "Semua fitur Business",
@@ -81,12 +81,15 @@ const Packages = () => {
 
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                <div className="text-3xl font-bold text-primary mb-3">
-                  {pkg.price}
+                <div className="flex flex-col gap-2 text-3xl font-bold text-primary mb-3">
+                  {Boolean(pkg.price) && <span>Mulai dari </span>}
+                  {pkg.promo && <span className="text-md">Rp {pkg.promo}</span>}
+                  <span className={`${pkg.promo ? "line-through text-gray-500 text-sm" : ""}`}>{pkg.price ? "Rp " : "Hubungi Kami"} {pkg.price}</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   {pkg.description}
                 </p>
+              
               </div>
 
               <ul className="space-y-3 mb-8">
@@ -99,6 +102,7 @@ const Packages = () => {
                   </li>
                 ))}
               </ul>
+                {pkg.promo && <p className="text-primary font-bold my-2">Promo Hingga Februari 2026!</p>}
 
               <PackagesButton />
             </div>
