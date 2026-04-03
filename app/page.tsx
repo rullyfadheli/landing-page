@@ -2,6 +2,7 @@ import Header from "./src/ui/Header";
 import Hero from "./src/ui/Hero";
 import About from "./src/ui/About";
 import Packages from "./src/ui/Packages";
+import OtokasSpotlight from "./src/ui/OtokasSpotlight";
 import Testimonials from "./src/ui/Testimonials";
 import Contact from "./src/ui/Contact";
 import Footer from "./src/ui/Footer";
@@ -20,6 +21,7 @@ const Index = () => {
         <Hero />
         <About />
         <Packages />
+        <OtokasSpotlight />
         <Testimonials />
         <Contact />
       </main>
