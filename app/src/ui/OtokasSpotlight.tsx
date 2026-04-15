@@ -14,6 +14,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import DownloadButton from "@/components/ui/DownloadButton";
 import {
   Scan,
   BarChart3,
@@ -281,7 +282,7 @@ const OtokasSpotlight = () => {
                 boxShadow: "var(--shadow-medium)",
               }}
             >
-              Langganan Sekarang
+              <DownloadButton />
               <ArrowRight size={18} />
             </motion.a>
 

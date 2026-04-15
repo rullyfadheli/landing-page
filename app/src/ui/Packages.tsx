@@ -2,52 +2,55 @@ import PackagesButton from "@/components/ui/PackagesButton";
 import { Check } from "lucide-react";
 
 const Packages = () => {
+  /**
+   * Professional service packages for multi-platform development.
+   * Targeted for the Indonesian business market (Web, Android, Desktop).
+   */
   const packages = [
     {
-      name: "Basic",
-      price: "1.000.000",
-      promo: "700.000",
+      name: "Digital Foundation",
+      price: "3.500.000",
       description:
-        "Solusi ideal untuk bisnis yang baru memulai kehadiran online",
+        "Solusi tepat untuk membangun kredibilitas instan. Hadirkan bisnis Anda di Google dan genggaman pelanggan dengan integrasi Web & Mobile.",
       features: [
-        "Desain responsif modern",
-        // "Hingga 5 halaman",
-        "SEO dasar",
-        "Form kontak",
-        "Integrasi Google Maps",
-        "SSL Certificate",
-        "1 bulan support gratis",
+        "Website Profil Bisnis Responsif",
+        "Aplikasi Android (Play Store Ready)",
+        "Dashboard Admin Kelola Konten Mudah",
+        "Optimasi Google Search (SEO Lokal)",
+        "Keamanan Data & SSL Sertifikat",
+        "Konsultasi & Support 1 Bulan",
       ],
       popular: false,
     },
     {
-      name: "Business",
-      price: "5.000.000",
-      description: "Paket lengkap untuk bisnis yang ingin tumbuh lebih cepat",
+      name: "Business Ecosystem",
+      price: "12.500.000",
+      description:
+        "Kendali penuh bisnis dalam satu sistem. Sinkronisasi otomatis antara Web, Android, dan Aplikasi Komputer untuk operasional tanpa celah.",
       features: [
-        "Semua fitur Basic",
-        "Hingga 8 halaman",
-        "SEO advanced",
-        "Blog/News system",
-        "Integrasi WhatsApp Business",
-        "Admin panel",
-        "Analytics dashboard",
-        "3 bulan support gratis",
+        "Sistem Web, Android, & Desktop (Windows/Mac)",
+        "Sinkronisasi Data Real-Time Antar Perangkat",
+        "Manajemen Inventori & Laporan Otomatis",
+        "Sistem Notifikasi WhatsApp Business",
+        "Analitik Performa Bisnis Harian",
+        "Backup Data Otomatis & Aman",
+        "Maintenance & Support Prioritas 3 Bulan",
       ],
       popular: true,
     },
     {
-      name: "E-commerce",
-      description: "Solusi komprehensif untuk toko online Anda",
+      name: "Enterprise Intelligence",
+      price: "Hubungi Kami",
+      description:
+        "Transformasi digital total dengan teknologi AI. Automasi proses bisnis yang rumit menjadi sederhana dan efisien secara instan.",
       features: [
-        "Semua fitur Business",
-        "Katalog produk unlimited",
-        "Shopping cart & checkout",
-        "Payment gateway integration",
-        "Inventory management",
-        "Order tracking",
-        "Customer dashboard",
-        "6 bulan support gratis",
+        "Custom Software Sesuai Alur Bisnis",
+        "Integrasi AI & Scan Dokumen Otomatis (OCR)",
+        "Automasi Penginputan Data Massal",
+        "Keamanan Tingkat Tinggi (Enterprise Grade)",
+        "Skalabilitas Server Tanpa Batas",
+        "Dedicated Developer & Tim Support",
+        "Optimasi Sistem Berkelanjutan",
       ],
       popular: false,
     },
@@ -81,14 +84,20 @@ const Packages = () => {
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
                 <div className="flex flex-col gap-2 text-3xl font-bold text-primary mb-3">
-                  {Boolean(pkg.price) && <span>Mulai dari </span>}
-                  {pkg.promo && <span className="text-md">Rp {pkg.promo}</span>}
-                  <span className={`${pkg.promo ? "line-through text-gray-500 text-sm" : ""}`}>{pkg.price ? "Rp " : "Hubungi Kami"} {pkg.price}</span>
+                  {Boolean(pkg.price !== "Hubungi Kami") ? (
+                    <span>Mulai dari </span>
+                  ) : (
+                    ""
+                  )}
+                  {/* {pkg.promo && <span className="text-md">Rp {pkg.promo}</span>} */}
+                  <span>
+                    {pkg.price !== "Hubungi Kami" && "Rp "}
+                    {pkg.price}
+                  </span>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   {pkg.description}
                 </p>
-              
               </div>
 
               <ul className="space-y-3 mb-8">
@@ -101,7 +110,7 @@ const Packages = () => {
                   </li>
                 ))}
               </ul>
-                {pkg.promo && <p className="text-primary font-bold my-2">Promo Hingga Februari 2026!</p>}
+              {/* {pkg.promo && <p className="text-primary font-bold my-2">Promo Hingga Februari 2026!</p>} */}
 
               <PackagesButton />
             </div>
